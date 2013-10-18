@@ -22,12 +22,18 @@ namespace DataBindingExample
     public partial class MainWindow : Window
     {
         ExampleViewModel exampleModel;
+        TreeNode exampleTreeNode;
 
         public MainWindow()
         {
             exampleModel = new ExampleViewModel("John", "Smith", new List<String>(){ "lughead", "catdaddy", "lunker"});
+            exampleTreeNode = TreeNode.GetTestData();
+
             InitializeComponent();
+
             stackPanel.DataContext = exampleModel;
+            theTreeView.DataContext = exampleTreeNode;
+
             textBox1.Text = "Hello there!";
 
         }

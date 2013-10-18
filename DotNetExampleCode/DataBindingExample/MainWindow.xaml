@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
@@ -33,6 +34,15 @@
             <Slider Name="exampleSlider" Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" />
             <Label Content="{Binding ElementName=exampleSlider, Path=Value}" />
         </StackPanel>
+
+        <!-- Not optimal, does not show root item. Will set up a root collection as well sometime -->
+        <TreeView Name="theTreeView" Grid.Row="3" Margin="10" ItemsSource="{Binding SubTrees}" >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="x:Type local:TreeNode" ItemsSource="{Binding SubTrees}">
+                    <TreeViewItem Header="{Binding Name}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
 
     </Grid>
 </Window>
